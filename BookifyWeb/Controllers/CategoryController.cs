@@ -1,12 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BookifyWeb.Data;
+using BookifyWeb.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookifyWeb.Controllers
 {
     public class CategoryController : Controller
     {
+        private readonly ApplicationDbContext _db;
+        public CategoryController(ApplicationDbContext db)
+        {
+            _db = db;
+        }
         public IActionResult Index()
         {
-            return View();
+            List<Category> objCategoryList = _db.categories.ToList();
+            return View(objCategoryList);
         }
     }
 }
