@@ -16,5 +16,10 @@ namespace BookifyWeb.Controllers
             List<Category> objCategoryList = _db.categories.ToList();
             return View(objCategoryList);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
