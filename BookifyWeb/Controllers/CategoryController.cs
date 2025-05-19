@@ -25,6 +25,12 @@ namespace BookifyWeb.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {
+
+            if(obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("name", "The display order cannot precisely match the name.");
+            }
+            
             if (ModelState.IsValid)
             {
                 _db.categories.Add(obj);
