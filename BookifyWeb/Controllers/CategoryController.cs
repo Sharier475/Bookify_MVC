@@ -42,5 +42,45 @@ namespace BookifyWeb.Controllers
             
             
         }
+
+
+        public IActionResult Edit(int id)
+        {
+            if(id == null || id == 0)
+            {
+                return NotFound();
+            }
+            Category? categoryFromDb = _db.categories.Find(id);
+            //Category? categoryFromDb1 = _db.categories.FirstOrDefault(u => u.Id == id);
+            //Category? categoryFromDb2 = _db.categories.Where(u => u.Id == id).FirstOrDefault();
+
+            if (categoryFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(categoryFromDb);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Category obj)
+        {
+
+            if (obj.Name == obj.DisplayOrder.ToString()) //Custom validation
+            {
+                ModelState.AddModelError("name", "The display order cannot precisely match the name.");
+            }
+
+
+            if (ModelState.IsValid)
+            {
+                _db.categories.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+
+
+        }
     }
 }
