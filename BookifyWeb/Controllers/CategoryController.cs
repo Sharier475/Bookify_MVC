@@ -66,15 +66,9 @@ namespace BookifyWeb.Controllers
         public IActionResult Edit(Category obj)
         {
 
-            if (obj.Name == obj.DisplayOrder.ToString()) //Custom validation
-            {
-                ModelState.AddModelError("name", "The display order cannot precisely match the name.");
-            }
-
-
             if (ModelState.IsValid)
             {
-                _db.categories.Add(obj);
+                _db.categories.Update(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
