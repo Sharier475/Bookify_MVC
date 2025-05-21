@@ -36,6 +36,7 @@ namespace BookifyWeb.Controllers
             {
                 _db.categories.Add(obj);
                 _db.SaveChanges();
+                TempData["Success"] = "Category Created Successfully";
                 return RedirectToAction("Index");
             }
             return View();
@@ -70,6 +71,7 @@ namespace BookifyWeb.Controllers
             {
                 _db.categories.Update(obj);
                 _db.SaveChanges();
+                TempData["Success"] = "Category Updated Successfully";
                 return RedirectToAction("Index");
             }
             return View();
@@ -105,6 +107,7 @@ namespace BookifyWeb.Controllers
             }
             _db.categories.Remove(obj);
             _db.SaveChanges();
+            TempData["Success"] = "Category Deleted Successfully";
             return RedirectToAction("Index");
 
         }
