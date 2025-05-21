@@ -44,7 +44,7 @@ namespace BookifyWeb.Controllers
         }
 
 
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int? id)
         {
             if(id == null || id == 0)
             {
@@ -74,6 +74,38 @@ namespace BookifyWeb.Controllers
             }
             return View();
 
+
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            Category? categoryFromDb = _db.categories.Find(id);
+            //Category? categoryFromDb1 = _db.categories.FirstOrDefault(u => u.Id == id);
+            //Category? categoryFromDb2 = _db.categories.Where(u => u.Id == id).FirstOrDefault();
+
+            if (categoryFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(categoryFromDb);
+        }
+
+        [HttpPost,ActionName("Delete")]
+        public IActionResult DeletePOST(int? id)
+        {
+            Category? obj = _db.categories.Find(id);
+            if(obj == null)
+            {
+                return NotFound();
+            }
+            _db.categories.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
 
         }
     }
