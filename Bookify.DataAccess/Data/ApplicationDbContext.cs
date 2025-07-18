@@ -1,7 +1,7 @@
-﻿using BookifyWeb.Models;
+﻿using Bookify.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookifyWeb.Data
+namespace Bookify.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {
@@ -9,7 +9,7 @@ namespace BookifyWeb.Data
         {
             
         }
-        public DbSet<Category> categories { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

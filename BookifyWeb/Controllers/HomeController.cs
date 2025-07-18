@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using BookifyWeb.Models;
+using Bookify.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookifyWeb.Controllers

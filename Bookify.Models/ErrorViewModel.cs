@@ -1,4 +1,4 @@
-namespace BookifyWeb.Models
+namespace Bookify.Models
 {
     public class ErrorViewModel
     {
